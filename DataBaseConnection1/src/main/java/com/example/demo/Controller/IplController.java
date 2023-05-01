@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Model.IplModel;
+import com.example.demo.Repository.IplRepo;
 import com.example.demo.Service.IplService;
 
 @RestController
@@ -45,5 +46,24 @@ public class IplController {
 		iserv.deleteInfo(playerId);
 		return "playerId "+playerId+" deleted";
 	}
+	@GetMapping("/sortDes/{pname}")
+	public List<IplModel> sortPlayer(@PathVariable("pname") String pname)
+	{
+		return iserv.sortDesc(pname);
+	}
+	//pagination
+	@GetMapping("/pagination/{pno}/{psize}")
+	public List<IplModel> paginationData(@PathVariable("pno") int pno,@PathVariable("psize") int psize)
+	{
+		return iserv.paginationnData(pno, psize);
+	}
+	@Autowired
+	public IplRepo ir;
+	@GetMapping("/saveir")
+	public List<IplModel> getDetail()
+	{
+		return ir.getAllData();
+	}
+	
 
 }

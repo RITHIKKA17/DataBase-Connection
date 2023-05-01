@@ -3,6 +3,9 @@ package com.example.demo.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Model.IplModel;
@@ -26,6 +29,17 @@ public class IplService {
 	public void deleteInfo(int playerId)
 	{
 		irepo.deleteById(playerId);
+	}
+	//sorting
+	public List<IplModel> sortDesc(String pname)
+	{
+		return irepo.findAll(Sort.by(pname).descending());
+	}
+	//Pagination
+	public List<IplModel> paginationnData(int pageno, int pageSize)
+	{
+		Page<IplModel> p=irepo.findAll(PageRequest.of(pageno, pageSize));
+		return p.getContent();
 	}
 
 }

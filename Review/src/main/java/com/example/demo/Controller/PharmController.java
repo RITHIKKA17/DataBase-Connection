@@ -45,5 +45,16 @@ public class PharmController {
 		pserv.deleteInfo(id);
 		return "Id "+id+" deleted";
 	}
+	@GetMapping("/sortDes/{pname}")
+	public List<PharmModel> sortPlayer(@PathVariable("pname") String pname)
+	{
+		return pserv.sortDesc(pname);
+	}
+	//pagination
+	@GetMapping("/pagination/{pno}/{psize}")
+	public List<PharmModel> paginationData(@PathVariable("pno") int pno,@PathVariable("psize") int psize)
+	{
+		return pserv.paginationnData(pno, psize);
+	}
 
 }

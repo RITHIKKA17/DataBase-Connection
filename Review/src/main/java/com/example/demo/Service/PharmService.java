@@ -3,6 +3,9 @@ package com.example.demo.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Model.PharmModel;
@@ -26,6 +29,17 @@ public class PharmService {
 	public void deleteInfo(int id)
 	{
 		prepo.deleteById(id);
+	}
+	//sorting
+	public List<PharmModel> sortDesc(String pname)
+	{
+		return prepo.findAll(Sort.by(pname).descending());
+	}
+	//Pagination
+	public List<PharmModel> paginationnData(int pageno, int pageSize)
+	{
+		Page<PharmModel> p=prepo.findAll(PageRequest.of(pageno, pageSize));
+		return p.getContent();
 	}
 
 }
