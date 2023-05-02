@@ -35,11 +35,21 @@ public class PharmService {
 	{
 		return prepo.findAll(Sort.by(pname).descending());
 	}
+	public List<PharmModel> sortAsc(String pname)
+	{
+		return prepo.findAll(Sort.by(pname).ascending());
+	}
 	//Pagination
 	public List<PharmModel> paginationnData(int pageno, int pageSize)
 	{
 		Page<PharmModel> p=prepo.findAll(PageRequest.of(pageno, pageSize));
 		return p.getContent();
 	}
+	public List<PharmModel> paginationAndSorting(int pageno,int pageSize,String pname)
+	{
+		Page<PharmModel> p=prepo.findAll(PageRequest.of(pageno, pageSize,Sort.by(pname).descending()));
+		return p.getContent();
+	}
+
 
 }

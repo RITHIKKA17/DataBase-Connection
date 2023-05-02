@@ -50,11 +50,22 @@ public class PharmController {
 	{
 		return pserv.sortDesc(pname);
 	}
+	@GetMapping("/sortAsc/{pname}")
+	public List<PharmModel> sort(@PathVariable("pname") String pname)
+	{
+		return pserv.sortAsc(pname);
+	}
 	//pagination
 	@GetMapping("/pagination/{pno}/{psize}")
 	public List<PharmModel> paginationData(@PathVariable("pno") int pno,@PathVariable("psize") int psize)
 	{
 		return pserv.paginationnData(pno, psize);
+	}
+	@GetMapping("/paginationsort/{pno}/{psize}/{pname}")
+	public List<PharmModel>paginationAndSorting(@PathVariable("pno")int pno,@PathVariable("psize")int psize,@PathVariable("pname")String pname)
+	{
+		return pserv.paginationAndSorting(pno,psize,pname);
+		
 	}
 
 }
