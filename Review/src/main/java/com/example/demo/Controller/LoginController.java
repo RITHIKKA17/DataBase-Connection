@@ -40,17 +40,6 @@ public class LoginController {
 	{
 		return lser.getUser();
 	}
-	//To reset Password
-	@PostMapping("/reset")
-	public String resetPassword(@RequestBody Map<String,String> resetData)
-	{
-		String username = resetData.get("username");
-		String Password = resetData.get("Password");
-		String newPassword = resetData.get("newPassword");
-		
-		String result = lser.resetPassword(username, Password, newPassword);
-		
-		return result;
-	}
+	
 
 }

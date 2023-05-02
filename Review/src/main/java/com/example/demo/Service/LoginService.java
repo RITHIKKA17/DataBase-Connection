@@ -32,25 +32,7 @@ public class LoginService {
 		}
 		
 	} 
-		public String resetPassword(String username, String Password, String newPassword)
-		{
-			UserModel user = obj.findByusername(username);
-			
-			if(user == null)
-			{
-				return "No user found";
-			}
-			
-			if(!user.getPassword().equals(Password))
-			{
-				return "Old password is incorrect";
-			}
-			
-			user.setPassword(newPassword);
-			obj.save(user);
-			
-			return "Password reset successful";
-		}
+		
 	public List<UserModel> getUser1()
 	{
 	  return obj.findAll();
