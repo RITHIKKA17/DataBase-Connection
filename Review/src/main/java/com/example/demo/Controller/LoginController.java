@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Model.UserModel;
 import com.example.demo.Service.LoginService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/user")
 
@@ -20,6 +22,7 @@ public class LoginController {
 	@Autowired
 	private LoginService lser;
 	//To log in:
+	@Tag( name="Login-check",description="checking details in login")
 	@PostMapping("/login")
 	public String login(@RequestBody Map<String,String>loginData)
 	{
@@ -29,12 +32,14 @@ public class LoginController {
 		return result;
 	}
 	//To add users
+	@Tag( name="Login-post",description="Posting details in login")
 	@PostMapping("/add")
 	public UserModel AddUser(@RequestBody UserModel cl)
 	{
 		return lser.addUser(cl);
 	}
 
+	@Tag( name="Login-get",description="Getting details in login")
 	@GetMapping("/getuser")
 	public List<UserModel> listAll()
 	{

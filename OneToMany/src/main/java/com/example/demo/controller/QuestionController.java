@@ -15,28 +15,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Question;
 import com.example.demo.repository.Questionrepo;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
 	@Autowired
 	Questionrepo qrepo;
+@Tag(name="Post", description="Posting details")
 	@PostMapping("")
 	public String saveDetails(@RequestBody Question qn)
 	{
 		qrepo.save(qn);
 		return "Data saved";
 	}
+@Tag(name="Get", description="Getting details")
 	@GetMapping("")
 	public List<Question> getDetails()
 	{
 		return qrepo.findAll();
 	}
+@Tag(name="Update", description="Updating details")
 	@PutMapping("")
 	public String updateDetails(@RequestBody Question qp)
 	{
 		qrepo.saveAndFlush(qp);
 		return "Data changed";
 	}
+@Tag(name="Delete", description="Deleting details")
 	@DeleteMapping("/{id}")
 	public String deleteDetails(@PathVariable int id)
 	{
